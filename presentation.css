@@ -1,0 +1,17 @@
+/* For presentation */
+
+h1 {
+    page-break-before: always;
+}
+
+code {
+    font-size: large !important;
+}
+
+li, p {
+    font-size: x-large;
+}
+
+.bookmark {
+    font-size: x-large;
+}
