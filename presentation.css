@@ -1,6 +1,10 @@
 /* For presentation */
 
-h1 {
+.page-cover-image {
+    margin-bottom: 1em;
+}
+
+.page-body h1 {
     page-break-before: always;
 }
 
@@ -8,10 +12,19 @@ code {
     font-size: large !important;
 }
 
-li, p {
+li, p, .callout, .bookmark {
     font-size: x-large;
 }
 
-.bookmark {
-    font-size: x-large;
+blockquote {
+    font-size: xx-large !important;
+}
+
+/* Presentation header */
+header {
+    /* margin-top: 30%;*/
+}
+
+.column {
+    overflow: auto !important;
 }
