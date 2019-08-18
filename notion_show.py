@@ -1,6 +1,7 @@
 import logging
 import os
 import subprocess
+import tempfile
 import zipfile
 from glob import glob
 from typing import Optional
@@ -41,18 +42,34 @@ def convert(content: str):
 
 def process(archive_path: str = None, output_path: Optional[str] = None):
     archive_path = glob(archive_path)[0]
-    output_path = output_path or 'show.html'
 
     logger.info('Source file: %s found.', archive_path)
 
-    archive = zipfile.ZipFile(archive_path)
-    for filename in archive.namelist():
-        content = archive.read(filename)
+    with tempfile.TemporaryDirectory() as temporary_directory:
+        with zipfile.ZipFile(archive_path) as archive:
+            archive.extractall(temporary_directory)
+
+        filename = [
+            filename
+            for filename in os.listdir(temporary_directory)
+            if filename.endswith('.html')
+        ][0]
+
+        with open(os.path.join(
+            temporary_directory,
+            filename
+        ), 'r') as source_html_file:
+            content = source_html_file.read()
 
         content = convert(content)
 
-        with open(output_path, 'w+') as f:
-            f.write(content)
+        output_path = os.path.join(
+            temporary_directory,
+            f'output.{filename}'
+        )
+
+        with open(output_path, 'w+') as output_html_file:
+            output_html_file.write(content)
 
         to_pdf(output_path, 'show.pdf')
 

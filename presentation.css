@@ -8,6 +8,10 @@
     page-break-before: always;
 }
 
+h1 code {
+    font-size: inherit !important;
+}
+
 code {
     font-size: large !important;
 }
@@ -16,7 +20,7 @@ li, p, .callout, .bookmark {
     font-size: x-large;
 }
 
-blockquote {
+blockquote, blockquote .code {
     font-size: xx-large !important;
 }
 
