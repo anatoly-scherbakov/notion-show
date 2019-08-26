@@ -10,8 +10,9 @@ This code is unpacking the HTML file, inserting a little CSS snippet into it and
 
 ```shell script
 sudo pip install virtualenvwrapper
+sudo apt-get install npm
 
-npm install -g chromehtml2pdf
+npm install chromehtml2pdf
 
 mkvirtualenv -p `which python3.7` notion-show
 pip install -r requirements.txt

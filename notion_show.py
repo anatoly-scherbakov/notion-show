@@ -18,10 +18,14 @@ def to_pdf(input_filename: str, output_filename: str):
         input_filename
     )
 
+    executable_path = os.path.join(
+        os.path.dirname(__file__),
+        'node_modules', '.bin', 'chromehtml2pdf'
+    )
+
     subprocess.run([
-        'chromehtml2pdf',
+        executable_path,
         '--landscape', '1',
-        # '--format A4',
         f'--out={output_filename}',
         input_filename,
     ])

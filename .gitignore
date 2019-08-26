@@ -3,6 +3,9 @@
 .python-version
 .pytest_cache
 
+/package-lock.json
+/node_modules/
+
 /*.zip
 /*.html
 /*.pdf
