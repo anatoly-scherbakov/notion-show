@@ -9,6 +9,8 @@ This code is unpacking the HTML file, inserting a little CSS snippet into it and
 ## Install requirements
 
 ```shell script
+git clone --recursive git@github.com:anatoly-scherbakov/notion-show.git
+
 sudo pip install virtualenvwrapper
 sudo apt-get install npm
 

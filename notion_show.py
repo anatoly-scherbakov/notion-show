@@ -1,11 +1,13 @@
 import logging
 import os
+import shutil
 import subprocess
 import tempfile
 import zipfile
 from glob import glob
 from typing import Optional
 
+import emoji_unicode
 from bs4 import BeautifulSoup
 from fire import Fire
 
@@ -41,7 +43,15 @@ def convert(content: str):
 
     soup.style.insert_before(tag)
 
-    return str(soup)
+    content = str(soup)
+
+    content = emoji_unicode.replace(
+        content,
+        lambda e: u'<img src="noto-emoji/png/128/emoji_u{filename}.png" data-alt="{raw}">'.format(
+            filename=e.code_points, raw=e.unicode)
+    )
+
+    return content
 
 
 def process(archive_path: str = None, output_path: Optional[str] = None):
@@ -52,6 +62,10 @@ def process(archive_path: str = None, output_path: Optional[str] = None):
     with tempfile.TemporaryDirectory() as temporary_directory:
         with zipfile.ZipFile(archive_path) as archive:
             archive.extractall(temporary_directory)
+
+        shutil.copytree('noto-emoji', os.path.join(
+            temporary_directory, 'noto-emoji'
+        ))
 
         filename = [
             filename
@@ -74,6 +88,8 @@ def process(archive_path: str = None, output_path: Optional[str] = None):
 
         with open(output_path, 'w+') as output_html_file:
             output_html_file.write(content)
+
+        shutil.copy(output_path, 'show.html')
 
         to_pdf(output_path, 'show.pdf')
 

@@ -1,2 +1,3 @@
 fire
 beautifulsoup4
+emoji-unicode
