@@ -47,7 +47,7 @@ def convert(content: str):
 
     content = emoji_unicode.replace(
         content,
-        lambda e: u'<img src="noto-emoji/png/128/emoji_u{filename}.png" data-alt="{raw}">'.format(
+        lambda e: u'<img class="emoji" src="noto-emoji/png/128/emoji_u{filename}.png" data-alt="{raw}">'.format(
             filename=e.code_points, raw=e.unicode)
     )
 

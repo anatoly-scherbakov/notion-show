@@ -1,5 +1,9 @@
 /* For presentation */
 
+img.emoji {
+    height: 1em;
+}
+
 .page-cover-image {
     margin-bottom: 1em;
 }
