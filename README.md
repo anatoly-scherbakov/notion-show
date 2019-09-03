@@ -35,6 +35,10 @@ python notion_show.py Export_123.zip my-show.pdf
 
 # To Do
 
+```shell script
+git submodule update --init --recursive
+```
+
 * Create a sample presentation to show how this looks
 * Fix known CSS issues
 * Integrate with Notion API
