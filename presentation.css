@@ -12,7 +12,9 @@ img.emoji {
     page-break-before: always;
 }
 
-h1 code {
+h1 code,
+h2 code,
+h3 code {
     font-size: inherit !important;
 }
 

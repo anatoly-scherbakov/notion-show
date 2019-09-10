@@ -91,7 +91,10 @@ def process(archive_path: str = None, output_path: Optional[str] = None):
 
         shutil.copy(output_path, 'show.html')
 
-        to_pdf(output_path, 'show.pdf')
+        to_pdf(
+            output_path,
+            filename.replace('.html', '').strip() + '.pdf'
+        )
 
 
 def main():
